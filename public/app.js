@@ -1,35 +1,32 @@
+const API_BASE = "http://localhost:3000";
+
 // ==============================
 // Profile + Sub-heading + Summary
 // ==============================
 async function loadProfile() {
-  const res = await fetch("/profile");
+  const res = await fetch(`${API_BASE}/profile`);
   const p = await res.json();
 
-  // Sub-heading (fetched from DB)
   document.querySelector(".subtitle").textContent = p.sub_heading;
-
-  // Summary
   document.getElementById("summary").textContent = p.summary;
 
-  // Profile details
   document.getElementById("profile").innerHTML = `
-  <p><strong>Email:</strong> ${p.email}</p>
+    <p><strong>Email:</strong> ${p.email}</p>
 
-  <div class="button-group">
-    <a href="${p.github}" target="_blank" class="btn">GitHub</a>
-    <a href="${p.linkedin}" target="_blank" class="btn">LinkedIn</a>
-    <a href="${p.geeksforgeeks}" target="_blank" class="btn">GeeksForGeeks</a>
-    <a href="${p.portfolio}" target="_blank" class="btn primary">Portfolio</a>
-  </div>
-`;
-
+    <div class="button-group">
+      <a href="${p.github}" target="_blank" class="btn">GitHub</a>
+      <a href="${p.linkedin}" target="_blank" class="btn">LinkedIn</a>
+      <a href="${p.geeksforgeeks}" target="_blank" class="btn">GeeksForGeeks</a>
+      <a href="${p.portfolio}" target="_blank" class="btn primary">Portfolio</a>
+    </div>
+  `;
 }
 
 // ==============================
 // Work Experience
 // ==============================
 async function loadWork() {
-  const res = await fetch("/work");
+  const res = await fetch(`${API_BASE}/work`);
   const data = await res.json();
 
   document.getElementById("work").innerHTML = data
@@ -49,7 +46,7 @@ async function loadWork() {
 // Education
 // ==============================
 async function loadEducation() {
-  const res = await fetch("/education");
+  const res = await fetch(`${API_BASE}/education`);
   const data = await res.json();
 
   document.getElementById("education").innerHTML = data
@@ -66,10 +63,10 @@ async function loadEducation() {
 }
 
 // ==============================
-// Certifications (with links)
+// Certifications
 // ==============================
 async function loadCertifications() {
-  const res = await fetch("/certifications");
+  const res = await fetch(`${API_BASE}/certifications`);
   const data = await res.json();
 
   document.getElementById("certifications").innerHTML = data
@@ -89,7 +86,7 @@ async function loadCertifications() {
 // Projects
 // ==============================
 async function loadProjects() {
-  const res = await fetch("/projects");
+  const res = await fetch(`${API_BASE}/projects`);
   const projects = await res.json();
 
   document.getElementById("projects").innerHTML = projects
@@ -106,10 +103,10 @@ async function loadProjects() {
 }
 
 // ==============================
-// Skills (grouped by category)
+// Skills
 // ==============================
 async function loadSkills() {
-  const res = await fetch("/skills");
+  const res = await fetch(`${API_BASE}/skills`);
   const skills = await res.json();
 
   const grouped = skills.reduce((acc, skill) => {
