@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://me-api-playground-x3uv.onrender.com";
 
 // ==============================
 // Profile + Sub-heading + Summary
